@@ -1,0 +1,55 @@
+---
+title       : Demo of SLIDIFY
+subtitle    : A presentation in a browser
+author      : William Henry Welch
+job         : R Hacker
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : [mathjax]            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+--- &twocol w1:60% w2:40%
+
+## First slide
+
+*** left
+
+1. Slidify is fun
+2. It has pretty transitions
+3. It is easy to include math (put `mathjax` into the widgets list)
+4. It is easy to include R code
+5. The source file is very simple as it includes minimal markup tags (this is also a drawback because it may not be possible to make the slides exactly as you want)
+
+*** right
+
+![Slidify is fun][1]
+[1]: http://ramnathv.github.io/slidifyExamples/examples/io2012/assets/img/slidify_logo.png
+
+--- 
+
+## R code and $\LaTeX$ demonstration
+
+A well known equation in math involving $\pi$ (which is known to be `r pi`) is the following
+
+$$
+\frac{\pi}{4} = \frac{1}{1} - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \cdots
+$$
+
+Plotting with `plot()` the partial sums and the value of $\pi/4$ gives
+
+```{r plot-pi, echo=FALSE, fig.width=8, fig.height=4}
+# echo=FALSE means to not show the code but show the results
+# echo=TRUE means show the code and the results
+
+num <- rep(c(1,-1),10)
+denom <- (1:20*2)-1
+terms <- num/denom
+partial_sums <- cumsum(terms)
+
+plot(1:20, partial_sums, type="l", 
+     main=expression("Convergence of a series towards "*pi/4), 
+     xlab="Number of terms", 
+     ylab="Value")
+abline(a=pi/4, b=0, col="red")
+```
+
